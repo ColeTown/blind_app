@@ -1,4 +1,5 @@
 import 'package:blind_app/screens/friendsPage.dart';
+import 'package:blind_app/screens/navBar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: FriendsPage(),
+      home: NavBar(),
     );
   }
 }
