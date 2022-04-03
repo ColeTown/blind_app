@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 class FriendsPage extends StatelessWidget{
   const FriendsPage({Key? key}) : super(key: key);
 
+  static int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ChatPage(),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index) => currentIndex = index,
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.grey.shade600,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
