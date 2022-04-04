@@ -3,11 +3,13 @@ from flask import Flask,request,jsonify
 app = Flask(__name__)
 
 @app.route('/api',methods=['GET'])
-def helloWorld():
+def getOrd():
    dic = {} 
-   dic['Query'] = str(request.args['Query'])
-   return jsonify(dic) 
- 
+   val = str(request.args['query'])
+   answer = str(ord(val))
+   dic['query'] = answer
+   return dic 
+  
 if __name__ == '__main__':
     app.run()
 
