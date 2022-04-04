@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'chatPage.dart';
 import 'homePage.dart';
+import 'pythonPage.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _NavBarState extends State<NavBar> {
       ChatPage(),
       HomePage(),
       ProfilePage(),
-      //PythonPage(),
+      PythonPage(),
     ];
     super.initState();
   }
@@ -53,10 +54,10 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(Icons.account_circle_outlined),
             label: 'Profile',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.account_circle_outlined),
-          //   label: 'Python',
-          // ),
+            BottomNavigationBarItem(
+             icon: Icon(Icons.account_circle_outlined),
+             label: 'Python',
+           ),
         ],
       ),
     );
