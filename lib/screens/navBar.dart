@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'friendsPage.dart';
 import 'homePage.dart';
 import 'pythonPage.dart';
+import 'geolocation.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _NavBarState extends State<NavBar> {
       HomePage(),
       ProfilePage(),
       PythonPage(),
+      GeoLocation(),
     ];
     super.initState();
   }
@@ -63,6 +65,10 @@ class _NavBarState extends State<NavBar> {
              icon: Icon(Icons.account_circle_outlined),
              label: 'Python',
            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_outlined),
+            label: 'GeoLocation',
+          ),
         ],
       ),
     );
