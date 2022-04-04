@@ -43,24 +43,24 @@ class MongoDatabase {
     return await Users.find(where.eq('userid', givenId)).toList();
   }
 
-  insertConnection(ObjectId _id, String userid1, String userid2, DateTime connectionDate) async {
-    return await Connections.insertOne({'_id': _id, 'userid1': userid1, 'userid2':userid2, 'connection_date': connectionDate});
+  insertConnection(String userid1, String userid2, DateTime connectionDate) async {
+    return await Connections.insertOne({'userid1': userid1, 'userid2':userid2, 'connection_date': connectionDate});
   }
 
-  insertInteractions(ObjectId _id, String userid1, String userid2, DateTime timeStamp) async {
-    return await Interactions.insertOne({'_id': _id, 'userid1': userid1, 'userid2':userid2, 'time_stamp': timeStamp});
+  insertInteractions(String userid1, String userid2, DateTime timeStamp) async {
+    return await Interactions.insertOne({'userid1': userid1, 'userid2':userid2, 'time_stamp': timeStamp});
   }
 
-  insertMessage(ObjectId _id, String messageId, String senderId, String receiverId, DateTime timeSent) async {
-    return await Messages.insertOne({'_id': _id, 'message_id': messageId, 'sender_id': senderId, 'receiver_id': receiverId, 'time_sent': timeSent});
+  insertMessage(String messageId, String senderId, String receiverId, DateTime timeSent) async {
+    return await Messages.insertOne({'message_id': messageId, 'sender_id': senderId, 'receiver_id': receiverId, 'time_sent': timeSent});
   }
 
-  insertUserTag(ObjectId _id, String userId, String tag) async {
-    return await UserTags.insertOne({'_id': _id, 'userid': userId, 'tag': tag});
+  insertUserTag(String userId, String tag) async {
+    return await UserTags.insertOne({'userid': userId, 'tag': tag});
   }
 
-  insertUser(ObjectId _id, String userId, String email, String pw, String fName, String lName, DateTime joinDate) async {
-    return await Users.insertOne({'_id': _id, 'userid': userId, 'email': email, 'pw': pw, 'fname': fName, 'lname':lName, 'joindate':joinDate});
+  insertUser(String userId, String email, String pw, String fName, String lName, DateTime joinDate) async {
+    return await Users.insertOne({'userid': userId, 'email': email, 'pw': pw, 'fname': fName, 'lname':lName, 'joindate':joinDate});
   }
 
 }
