@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../models/chatUsersModel.dart';
 import '../widgets/conversationList.dart';
-import 'package:mongo_dart/mongo_dart.dart' as mongodb;
 
 class ChatPage extends StatefulWidget {
   @override
