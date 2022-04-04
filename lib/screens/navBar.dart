@@ -2,7 +2,7 @@ import 'package:blind_app/screens/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'friendsPage.dart';
+import 'chatPage.dart';
 import 'homePage.dart';
 
 class NavBar extends StatefulWidget {
@@ -13,18 +13,13 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
 
   int currentIndex = 1;
-  // void changeActivePage(int index) {
-  //   setState(() {
-  //     currentIndex = index;
-  //   });
-  // }
 
   List<Widget> pages = [];
 
   @override
   void initState() {
     pages = [
-      FriendsPage(),
+      ChatPage(),
       HomePage(),
       ProfilePage(),
       //PythonPage(),
