@@ -21,15 +21,15 @@ class _LoginDemoState extends State<LoginDemo> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
-              child: Center(
-                child: Container(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('asset/images/flutter-logo.png')),
-              ),
+              // child: Center(
+              //   child: Container(
+              //       width: 200,
+              //       height: 150,
+              //       /*decoration: BoxDecoration(
+              //           color: Colors.red,
+              //           borderRadius: BorderRadius.circular(50.0)),*/
+              //       child: Image.asset('asset/images/flutter-logo.png')),
+              // ),
             ),
             Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
