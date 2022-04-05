@@ -11,8 +11,6 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
 
-  String localUserId = 'then-dog-1993';
-
   Future<List> getMessages() async {
     List<ChatUsers> friends = [];
     List usersFriendsId = await db.getConnections(localUserId);
@@ -22,6 +20,7 @@ class _ChatPageState extends State<ChatPage> {
         var tempMessage = await db.getMostRecentMessage(
             localUserId, friend['userid2']);
         friends.add(ChatUsers(
+            userId: tempFriend[0]['userid'],
             name: tempFriend[0]['fname'] + " " + tempFriend[0]['lname'],
             messageText: tempMessage?['text'] ?? "Start a conversation!",
             imageURL: "https://randomuser.me/api/portraits/men/5.jpg",
@@ -92,6 +91,7 @@ class _ChatPageState extends State<ChatPage> {
                           imageUrl: snapshot.data![index].imageURL,
                           time: DateFormat('MMMd').format(snapshot.data![index]
                               .lastTime),
+                          friendUserId: snapshot.data![index].userId,
                         );
                       },
                     ),

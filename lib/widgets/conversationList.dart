@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import '../screens/chatDetailPage.dart';
 
 class ConversationList extends StatefulWidget{
+  String friendUserId;
   String name;
   String messageText;
   String imageUrl;
   String time;
-  ConversationList({Key? key, required this.name,required this.messageText,required this.imageUrl,required this.time}) : super(key: key);
+  ConversationList({Key? key, required this.name,required this.messageText,required this.imageUrl,required this.time, required this.friendUserId}) : super(key: key);
   @override
   _ConversationListState createState() => _ConversationListState();
 }
@@ -18,7 +19,9 @@ class _ConversationListState extends State<ConversationList> {
     return GestureDetector(
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context){
-          return ChatDetailPage();
+          return ChatDetailPage(
+            friendUserId: widget.friendUserId,
+          );
         }));
       },
       child: Container(

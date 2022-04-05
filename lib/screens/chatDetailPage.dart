@@ -6,28 +6,26 @@ import '../main.dart';
 import '../models/chatMessageModel.dart';
 
 class ChatDetailPage extends StatefulWidget {
+  String friendUserId;
+  ChatDetailPage({Key? key, required this.friendUserId}) : super(key: key);
   @override
   _ChatDetailPageState createState() => _ChatDetailPageState();
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
-  String localUserId = 'then-dog-1993';
-  String friendUserId = 'middle-mole-4206';
   final textController = TextEditingController();
 
-  Future<List> getMessages() async {
+  Future<List> getMessages(String friendUserId) async {
     List<ChatMessage> messages = [];
     List fromUser = await db.getMessages(localUserId, friendUserId);
     List toUser = await db.getMessages(friendUserId, localUserId);
+    var friendProfile = await db.getUsers(friendUserId);
+    var friendName = friendProfile[0]['fname'] + " " + friendProfile[0]['lname'];
     for (var message in fromUser) {
-      try {
-        messages.add(ChatMessage(
-            messageContent: message['text'],
-            messageType: 'sender',
-            timeSent: message['time_sent']));
-      } catch (e) {
-        print(e);
-      }
+      messages.add(ChatMessage(
+          messageContent: message['text'],
+          messageType: 'sender',
+          timeSent: message['time_sent']));
     }
     for (var message in toUser) {
       messages.add(ChatMessage(
@@ -36,7 +34,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           timeSent: message['time_sent']));
     }
     messages.sort((a, b) => b.timeSent.compareTo(a.timeSent));
-    return messages;
+    List snapshot = [];
+    snapshot.add(friendName);
+    snapshot.add(messages);
+    return snapshot;
   }
 
   @override
@@ -48,9 +49,11 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getMessages(),
+        future: getMessages(widget.friendUserId),
         builder: (context, AsyncSnapshot<List> snapshot) {
           if (snapshot.hasData) {
+            String receiverName = snapshot.data![0];
+            List<ChatMessage> messages = snapshot.data![1];
             return Scaffold(
               appBar: AppBar(
                 elevation: 0,
@@ -70,7 +73,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 2,
                         ),
                         CircleAvatar(
@@ -87,7 +90,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                "Kriss Benwat",
+                                receiverName,
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600),
                               ),
@@ -108,7 +111,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: ListView.builder(
-                      itemCount: snapshot.data!.length,
+                      itemCount: messages.length,
                       shrinkWrap: true,
                       reverse: true,
                       padding: const EdgeInsets.only(top: 10, bottom: 100),
@@ -119,20 +122,20 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                               left: 14, right: 14, top: 10, bottom: 10),
                           child: Align(
                             alignment:
-                                (snapshot.data![index].messageType == "receiver"
+                                (messages[index].messageType == "receiver"
                                     ? Alignment.topLeft
                                     : Alignment.topRight),
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: (snapshot.data![index].messageType ==
+                                color: (messages[index].messageType ==
                                         "receiver"
                                     ? Colors.grey.shade200
                                     : Colors.blue[200]),
                               ),
                               padding: const EdgeInsets.all(16),
                               child: Text(
-                                snapshot.data![index].messageContent,
+                                messages[index].messageContent,
                                 style: const TextStyle(fontSize: 15),
                               ),
                             ),
@@ -187,8 +190,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                               setState(() {});
                               var temp = textController.text;
                               textController.clear();
-                              db.insertMessage(temp, localUserId, friendUserId,
-                                  DateTime.now());
+                              db.insertMessage(temp, localUserId,
+                                  widget.friendUserId, DateTime.now());
                             },
                             child: const Icon(
                               Icons.send,

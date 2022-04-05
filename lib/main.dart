@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'database/database.dart';
 var db = MongoDatabase();
+String localUserId = 'then-dog-1993';
 
 void main() {
   db.connect();
