@@ -14,12 +14,14 @@ class GeoLocation {
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
 
-        currentPosition = position;
+          currentPosition = position;
 
      // getAddressFromLatLng();
     }).catchError((e) {
       print(e);
     });
+
+    return currentPosition;
   }
 
   getAddressFromLatLng() async {
@@ -34,6 +36,7 @@ class GeoLocation {
     } catch (e) {
       print(e);
     }
+    return currentAddress;
   }
-
+  
 }
