@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "877701346570",
+    "project_id": "blindapp-a0055",
+    "storage_bucket": "blindapp-a0055.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877701346570:android:0a81fb649c8ece8e68f6f3",
+        "android_client_info": {
+          "package_name": "com.example.blind_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877701346570-22l1164fuklg02gpg8c8rhntiqifk81j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVhcph0QrW8uAdOR4vbhlDRq-1XB3tSg0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877701346570-22l1164fuklg02gpg8c8rhntiqifk81j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
