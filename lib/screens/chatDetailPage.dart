@@ -61,7 +61,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 backgroundColor: Colors.white,
                 flexibleSpace: SafeArea(
                   child: Container(
-                    padding: EdgeInsets.only(right: 16),
+                    padding: const EdgeInsets.only(right: 16),
                     child: Row(
                       children: <Widget>[
                         IconButton(
@@ -78,7 +78,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                         ),
                         CircleAvatar(
                           backgroundImage: NetworkImage(
-                              "https://randomuser.me/api/portraits/men/5.jpg"),
+                              "https://randomuser.me/api/portraits/lego/3.jpg"),
                           maxRadius: 20,
                         ),
                         SizedBox(

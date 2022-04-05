@@ -1,4 +1,5 @@
 import 'package:blind_app/screens/friendsPage.dart';
+import 'package:blind_app/screens/login.dart';
 import 'package:blind_app/screens/navBar.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: NavBar(),
+      home: LoginDemo(),
     );
   }
 }
