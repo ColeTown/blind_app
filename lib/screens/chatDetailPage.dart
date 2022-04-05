@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import '../database/database.dart';
 import '../main.dart';
 import '../models/chatMessageModel.dart';
 
@@ -12,14 +11,12 @@ class ChatDetailPage extends StatefulWidget {
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
-  String localUserId = 'testing sender';
-  String friendUserId = 'testing receiver';
-  // var db = MongoDatabase();
+  String localUserId = 'then-dog-1993';
+  String friendUserId = 'middle-mole-4206';
   final textController = TextEditingController();
 
   Future<List> getMessages() async {
     List<ChatMessage> messages = [];
-    // await db.connect();
     List fromUser = await db.getMessages(localUserId, friendUserId);
     List toUser = await db.getMessages(friendUserId, localUserId);
     for (var message in fromUser) {

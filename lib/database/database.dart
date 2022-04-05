@@ -23,10 +23,10 @@ class MongoDatabase {
     }
   }
 
-  getConnections(String userid1, String userid2) async {
+  getConnections(String userid1) async {
     try {
       return await Connections.find(
-              where.eq('userid1', userid1).eq('userid2', userid2))
+              where.eq('userid1', userid1))
           .toList();
     } catch (e) {
       print(e);
@@ -49,9 +49,21 @@ class MongoDatabase {
               where.eq('sender_id', sender).eq('receiver_id', receiver))
           .toList();
     } catch (e) {
-      print(e);
+      print("getMessages: " + e.toString());
     }
   }
+
+  getMostRecentMessage(String userId1, String userId2) async {
+    try {
+      List messages = await getMessages(userId1, userId2);
+      messages.addAll(await getMessages(userId2, userId1));
+      messages.sort((a,b) => b['time_sent'].compareTo(a['time_sent']));
+      return messages.first;
+    } catch (e) {
+      print("getMostRecentMessage: " + e.toString());
+    }
+  }
+
 
   getUserTags(String givenId) async {
     try {
