@@ -1,5 +1,6 @@
 import 'package:blind_app/screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'geolocation/geolocation.dart';
 import 'database/database.dart';
 import 'python/pythonapi.dart';
@@ -13,12 +14,19 @@ String localUserId = 'then-dog-1993';
 void main() {
   db.connect();
   runApp(MyApp());
-  pushCurrentLocationToDB();
-  getResponse(localUserId);
+  pushCurrentLocationToDB(localUserId);
+  //getResponse(localUserId);
 }
 
-pushCurrentLocationToDB() async {
+pushCurrentLocationToDB(String userId) async {
   await geo.getCurrentLocation();
+  await updateLocation(userId, geo.currentPosition);
+}
+
+updateLocation(String userId, Position position) async {
+
+  await db.updateLocation(userId, position);
+
 }
 
 getResponse(String userId) {
