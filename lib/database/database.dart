@@ -151,22 +151,29 @@ class MongoDatabase {
     }
   }
 
-  insertLocation(String userId, Position position) async {
+  updateLocation(String userId, Position position) async {
     try {
-     return await UserLocations.insertOne({
-       'userid': userId,
-       'longitude': position.longitude,
-       'latitude': position.latitude
-     });
+     if(await UserLocations.findOne(where.eq('userid', userId))==null){
+        return await UserLocations.insertOne({
+          'userid': userId,
+          'longitude': position.longitude,
+          'latitude': position.latitude
+        });
+      }
+     else {
+        await UserLocations.updateOne(where.eq('userid', userId),
+            modify.set('longitude', position.longitude));
+        await UserLocations.updateOne(where.eq('userid', userId),
+            modify.set('latitude', position.latitude));
+     }
     } catch (e) {
       print(e);
     }
   }
 
-  updateLocation(String userId, Position position) async {
-    try {
-      await UserLocations.updateOne(where.eq('userid', userId), modify.set('longitude', position.longitude));
-      await UserLocations.updateOne(where.eq('userid', userId), modify.set('latitude', position.latitude));
+  getLocation(String userId) async {
+    try{
+      return Position.fromMap(await UserLocations.findOne(where.eq('userid', userId)));
     } catch (e) {
       print(e);
     }
