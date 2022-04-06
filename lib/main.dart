@@ -9,7 +9,8 @@ var db = MongoDatabase();
 var geo = GeoLocation();
 var py = Python();
 
-String localUserId = 'middle-mole-4206';
+String localUserId = 'then-dog-1993';
+//'middle-mole-4206', 'then-dog-1993'
 
 void main() {
   db.connect();

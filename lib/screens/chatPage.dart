@@ -24,9 +24,9 @@ class _ChatPageState extends State<ChatPage> {
     List usersFriendsId = await db.getConnections(localUserId);
     for (var friend in usersFriendsId) {
       try {
-        var tempFriend = await db.getUsers(friend['userid2']);
+        var tempFriend = await db.getUsers(friend);
         var tempMessage =
-            await db.getMostRecentMessage(localUserId, friend['userid2']);
+            await db.getMostRecentMessage(localUserId, friend);
         friends.add(ChatUsers(
             userId: tempFriend[0]['userid'],
             name: tempFriend[0]['fname'] + " " + tempFriend[0]['lname'],

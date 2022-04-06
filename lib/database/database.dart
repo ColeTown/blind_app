@@ -29,12 +29,22 @@ class MongoDatabase {
   //will return a list of connections that userid1 is a part of
   getConnections(String userid1) async {
     try {
-      List connections = await Connections.find(
+      List<String> connections = [];
+      List connections1 = await Connections.find(
           where.eq('userid1', userid1))
           .toList();
-      connections.addAll(await Connections.find(
+      print(connections1);
+      for(var con in connections1) {
+        connections.add(con['userid2']);
+      }
+      List connections2 = await Connections.find(
           where.eq('userid2', userid1))
-          .toList());
+          .toList();
+      print(connections2);
+      for(var con in connections2) {
+        connections.add(con['userid1']);
+      }
+      print(connections);
       return connections;
     } catch (e) {
       print(e);

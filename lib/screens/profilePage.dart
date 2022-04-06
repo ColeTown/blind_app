@@ -18,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage>{
     setState(() {});
   }
 
-  Future getProfileUser() async {
+  Future<List> getProfileUser() async {
     Random r = Random();
     try {
       var user = await db.getUsers(localUserId);
@@ -35,10 +35,13 @@ class _ProfilePageState extends State<ProfilePage>{
           bioText: user[0]['bio'],
           tags: tagList
       );
-      return thisUserProfile;
+      List<ProfileUser> profile = [];
+      profile.add(thisUserProfile);
+      return profile;
     } catch (e) {
       print("Profile Page getProfileUser(): " + e.toString());
     }
+    return [];
   }
 
   @override
@@ -47,7 +50,6 @@ class _ProfilePageState extends State<ProfilePage>{
       future: getProfileUser(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData){
-          String name = snapshot.data!.name;
           return Scaffold(
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -78,17 +80,17 @@ class _ProfilePageState extends State<ProfilePage>{
                             child: Stack(
                               children: [
                                 CircleAvatar(
-                                  backgroundImage: NetworkImage(snapshot.data!.imageURL),
+                                  backgroundImage: NetworkImage(snapshot.data[0]!.imageURL),
                                   maxRadius: 80,
                                 ),
 
                               ],
                             ),
                           ),
-                          const Padding(
+                          Padding(
                             padding:  EdgeInsets.only(top: 16, left: 16, right: 16),
                             child:  Text(
-                                "First and Lastname",
+                                snapshot.data[0]!.name,
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold)
                               ),
@@ -112,8 +114,8 @@ class _ProfilePageState extends State<ProfilePage>{
                               decoration: const BoxDecoration(color: Colors.cyan),
                               width: 300,
                               height: 60,
-                              child: const Text(
-                                  "Bio goes in here"
+                              child:  Text(
+                                  snapshot.data[0]!.bioText
                               ),
                             ),
                           ),
@@ -130,8 +132,8 @@ class _ProfilePageState extends State<ProfilePage>{
                                 decoration: const BoxDecoration(color: Colors.cyan),
                                 width: 300,
                                 height: 60,
-                                child: const Text(
-                                  "Tags goes in here"
+                                child: Text(
+                                  snapshot.data[0]!.tags.toString()
                                 ),
                             ),
                           ),
