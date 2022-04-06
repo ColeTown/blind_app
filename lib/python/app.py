@@ -6,7 +6,7 @@ app = Flask(__name__)
 def getOrd():
    dic = {} 
    val = str(request.args['query'])
-   answer = str(ord(val))
+   answer = str(val) 
    dic['query'] = answer
    return dic 
   
