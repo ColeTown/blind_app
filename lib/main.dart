@@ -5,7 +5,6 @@ import 'database/database.dart';
 
 var db = MongoDatabase();
 var geo = GeoLocation();
-var b;
 
 String localUserId = 'then-dog-1993';
 
@@ -17,6 +16,7 @@ void main() {
 
 pushCurrentLocationToDB() async {
   await geo.getCurrentLocation();
+  db.updateLocation(localUserId, geo.currentPosition);
 }
 
 class MyApp extends StatelessWidget {

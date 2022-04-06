@@ -165,10 +165,8 @@ class MongoDatabase {
 
   updateLocation(String userId, Position position) async {
     try {
-      return await UserLocations.updateOne({
-        'longitude': position.longitude,
-        'latitude': position.latitude
-      });
+      await UserLocations.updateOne(where.eq('userid', userId), modify.set('longitude', position.longitude));
+      await UserLocations.updateOne(where.eq('userid', userId), modify.set('latitude', position.latitude));
     } catch (e) {
       print(e);
     }
