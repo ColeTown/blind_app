@@ -153,6 +153,7 @@ class MongoDatabase {
 
   updateLocation(String userId, Position position) async {
     try {
+      print("test: " + await UserLocations.findOne(where.eq('userid', userId)));
      if(await UserLocations.findOne(where.eq('userid', userId))==null){
         return await UserLocations.insertOne({
           'userid': userId,
