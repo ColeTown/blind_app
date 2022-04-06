@@ -178,4 +178,28 @@ class MongoDatabase {
       print(e);
     }
   }
+
+  //Anderson
+  //TODO Im not sure if this is correct
+  //There should be a better way to pull fname and lname at once
+  getName(String userId) async {
+    try{
+      return await Users.findOne(where.eq('userid', userId)).fname + Users.findOne(where.eq('userid', userId)).lname;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //Anderson
+  //TODO
+  getBio(String userId) async{
+    try{
+      return await Users.findOne(where.eq('userid', userId)).bio;
+    } catch (e) {
+      print(e);
+    }
+
+
+
+  }
 }
