@@ -14,6 +14,10 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final textController = TextEditingController();
 
+  refresh() {
+    setState(() {});
+  }
+
   Future<List> getMessages() async {
     Random r = Random();
     List<ChatUsers> friends = [];
@@ -76,6 +80,7 @@ class _ChatPageState extends State<ChatPage> {
                       child: TextField(
                         controller: textController,
                         onEditingComplete: () {
+                          FocusManager.instance.primaryFocus?.unfocus();
                           setState(() {});
                         },
                         decoration: InputDecoration(
@@ -109,6 +114,7 @@ class _ChatPageState extends State<ChatPage> {
                           time: DateFormat('MMMd')
                               .format(snapshot.data![index].lastTime),
                           friendUserId: snapshot.data![index].userId,
+                          refreshParent: refresh,
                         );
                       },
                     ),

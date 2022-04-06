@@ -5,7 +5,6 @@ import 'database/database.dart';
 
 var db = MongoDatabase();
 var geo = GeoLocation();
-var b;
 
 String localUserId = 'then-dog-1993';
 

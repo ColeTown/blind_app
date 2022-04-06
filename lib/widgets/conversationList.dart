@@ -8,31 +8,35 @@ class ConversationList extends StatefulWidget {
   String messageText;
   String imageUrl;
   String time;
+  final Function() refreshParent;
   ConversationList(
       {Key? key,
       required this.name,
       required this.messageText,
       required this.imageUrl,
       required this.time,
-      required this.friendUserId})
+      required this.friendUserId,
+      required this.refreshParent})
       : super(key: key);
   @override
   _ConversationListState createState() => _ConversationListState();
 }
 
 class _ConversationListState extends State<ConversationList> {
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        final value = await Navigator.push(
+        await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => ChatDetailPage(
                 friendUserId: widget.friendUserId,
               ),
-            ));
-        setState(() {});
+            )
+        );
+        widget.refreshParent();
       },
       child: Container(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
