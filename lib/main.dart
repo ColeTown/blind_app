@@ -9,7 +9,7 @@ var db = MongoDatabase();
 var geo = GeoLocation();
 var py = Python();
 
-String localUserId = 'then-dog-1993';
+String localUserId = 'middle-mole-4206';
 
 void main() {
   db.connect();
