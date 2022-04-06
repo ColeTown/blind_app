@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import '../main.dart';
 
 
 class GeoLocation {
@@ -40,5 +41,5 @@ class GeoLocation {
     }
     print(currentAddress);
   }
-  
+
 }
