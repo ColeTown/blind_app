@@ -4,11 +4,9 @@ import 'geolocation/geolocation.dart';
 import 'database/database.dart';
 
 var db = MongoDatabase();
-<<<<<<< HEAD
 var geo = GeoLocation();
 var b;
 
-void main() async {
 String localUserId = 'then-dog-1993';
 
 void main() {
