@@ -16,7 +16,6 @@ void main() {
 
 pushCurrentLocationToDB() async {
   await geo.getCurrentLocation();
-  db.updateLocation(localUserId, geo.currentPosition);
 }
 
 class MyApp extends StatelessWidget {
