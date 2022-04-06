@@ -12,6 +12,8 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  final textController = TextEditingController();
+
   Future<List> getMessages() async {
     Random r = Random();
     List<ChatUsers> friends = [];
@@ -33,8 +35,14 @@ class _ChatPageState extends State<ChatPage> {
     }
 
     friends.sort((a, b) => a.lastTime.compareTo(b.lastTime));
+    if(textController.text != "") {
+      String temp = textController.text;
+      textController.clear();
+      return friends.where((f) => f.name.toLowerCase().contains(temp.toLowerCase())).toList();
+    }
     return friends;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +74,10 @@ class _ChatPageState extends State<ChatPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
                       child: TextField(
+                        controller: textController,
+                        onEditingComplete: () {
+                          setState(() {});
+                        },
                         decoration: InputDecoration(
                           hintText: "Search...",
                           hintStyle: TextStyle(color: Colors.grey.shade600),
