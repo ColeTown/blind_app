@@ -5,23 +5,26 @@ import 'package:geolocator/geolocator.dart';
 
 
 class GeoLocation {
+
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   Position currentPosition = Position();
   String currentAddress = "";
 
-  getCurrentLocation() {
-    geolocator
+  getCurrentLocation() async {
+
+   await geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
 
-          currentPosition = position;
+          currentPosition =  position;
+          print(currentPosition);
+          getAddressFromLatLng();
 
-     // getAddressFromLatLng();
+
     }).catchError((e) {
       print(e);
     });
 
-    return currentPosition;
   }
 
   getAddressFromLatLng() async {
@@ -36,7 +39,7 @@ class GeoLocation {
     } catch (e) {
       print(e);
     }
-    return currentAddress;
+    print(currentAddress);
   }
   
 }
