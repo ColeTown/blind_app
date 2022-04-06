@@ -20,19 +20,24 @@ class _ProfilePageState extends State<ProfilePage>{
 
   Future getProfileUser() async {
     Random r = Random();
-    ProfileUser thisUserProfile = ProfileUser(imageURL: "https://randomuser.me/api/portraits/lego/" + r.nextInt(10).toString() +".jpg", userId: '', tags: [], name: '', bioText: '');
-    /*try {
+    try {
+      var user = await db.getUsers(localUserId);
+      var userTags = await db.getUserTags(localUserId);
+      List<String> tagList = [];
+      for(var tag in userTags) {
+        tagList.add(tag['tag']);
+      }
       ProfileUser thisUserProfile = ProfileUser(
         userId: localUserId,
         imageURL: "https://randomuser.me/api/portraits/lego/" + r.nextInt(10).toString() +".jpg",
-        name: db.getName(localUserId),
-        bioText: db.getBio(localUserId),
-        tags: db.getUserTags(localUserId)
+        name: user[0]['fname'] + " " + user[0]['lname'],
+        bioText: user[0]['bio'],
+        tags: tagList
       );
+      return thisUserProfile;
     } catch (e) {
       print("Profile Page getProfileUser(): " + e.toString());
-    // */
-    return thisUserProfile;
+    }
   }
 
   @override
