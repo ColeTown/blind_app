@@ -53,7 +53,7 @@ class _ChatPageState extends State<ChatPage> {
     return FutureBuilder(
         future: getMessages(),
         builder: (context, AsyncSnapshot<List> snapshot) {
-          if (snapshot.hasData) {
+  if (snapshot.hasData) {
             return Scaffold(
               body: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
