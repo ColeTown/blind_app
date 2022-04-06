@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 
 import 'navBar.dart';
 
-class LoginDemo extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
   _LoginDemoState createState() => _LoginDemoState();
 }
 
-class _LoginDemoState extends State<LoginDemo> {
+class _LoginDemoState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Login Page"),
+        title: const Text("Login Page"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 60.0),
               // child: Center(
               //   child: Container(
               //       width: 200,
@@ -31,7 +31,7 @@ class _LoginDemoState extends State<LoginDemo> {
               //       child: Image.asset('asset/images/flutter-logo.png')),
               // ),
             ),
-            Padding(
+            const Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
@@ -41,8 +41,8 @@ class _LoginDemoState extends State<LoginDemo> {
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
@@ -58,7 +58,7 @@ class _LoginDemoState extends State<LoginDemo> {
               onPressed: (){
                 //TODO FORGOT PASSWORD SCREEN GOES HERE
               },
-              child: Text(
+              child: const Text(
                 'Forgot Password',
                 style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
@@ -73,16 +73,16 @@ class _LoginDemoState extends State<LoginDemo> {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => NavBar()));
                 },
-                child: Text(
+                child: const Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 130,
             ),
-            Text('New User? Create Account')
+            const Text('New User? Create Account')
           ],
         ),
       ),

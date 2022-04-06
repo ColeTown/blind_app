@@ -23,11 +23,16 @@ class MongoDatabase {
     }
   }
 
+  //will return a list of connections that userid1 is a part of
   getConnections(String userid1) async {
     try {
-      return await Connections.find(
-              where.eq('userid1', userid1))
+      List connections = await Connections.find(
+          where.eq('userid1', userid1))
           .toList();
+      connections.addAll(await Connections.find(
+          where.eq('userid2', userid1))
+          .toList());
+      return connections;
     } catch (e) {
       print(e);
     }
@@ -43,6 +48,7 @@ class MongoDatabase {
     }
   }
 
+  //returns a list of messages from sender sent to receiver
   getMessages(String sender, String receiver) async {
     try {
       return await Messages.find(
@@ -52,6 +58,7 @@ class MongoDatabase {
       print("getMessages: " + e.toString());
     }
   }
+
 
   getMostRecentMessage(String userId1, String userId2) async {
     try {

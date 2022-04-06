@@ -1,13 +1,11 @@
-import 'package:blind_app/screens/friendsPage.dart';
 import 'package:blind_app/screens/login.dart';
-import 'package:blind_app/screens/navBar.dart';
 import 'package:flutter/material.dart';
-
 import 'database/database.dart';
+
 var db = MongoDatabase();
 String localUserId = 'then-dog-1993';
 
-void main() {
+void main()  {
   db.connect();
   runApp(MyApp());
 }
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginDemo(),
+      home: LoginPage(),
     );
   }
 }

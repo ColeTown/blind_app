@@ -9,7 +9,7 @@ class GeoLocation {
   Position currentPosition = Position();
   String currentAddress = "";
 
-  getCurrentLocation() {
+  getCurrentLocation() async {
     geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
