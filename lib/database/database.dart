@@ -1,9 +1,11 @@
 import 'package:mongo_dart/mongo_dart.dart';
+import 'package:geolocator/geolocator.dart';
 
 class MongoDatabase {
   var Connections;
   var Interactions;
   var Messages;
+  var UserLocations;
   var UserTags;
   var Users;
   var db;
@@ -16,6 +18,7 @@ class MongoDatabase {
       Connections = db.collection('Connections');
       Interactions = db.collection('Interactions');
       Messages = db.collection('Messages');
+      UserLocations = db.collection('UserLocations');
       UserTags = db.collection('UserTags');
       Users = db.collection('Users');
     } catch (e) {
@@ -135,6 +138,29 @@ class MongoDatabase {
         'fname': fName,
         'lname': lName,
         'joindate': joinDate
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  insertLocation(String userId, Position position) async {
+    try {
+     return await UserLocations.insertOne({
+       'userid': userId,
+       'longitude': position.longitude,
+       'latitude': position.latitude
+     });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  updateLocation(String userId, Position position) async {
+    try {
+      return await UserLocations.updateOne({
+        'longitude': position.longitude,
+        'latitude': position.latitude
       });
     } catch (e) {
       print(e);
