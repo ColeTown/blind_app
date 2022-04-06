@@ -1,3 +1,4 @@
+import 'package:blind_app/screens/explorePage.dart';
 import 'package:blind_app/screens/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,8 @@ class _NavBarState extends State<NavBar> {
   void initState() {
     pages = [
       ChatPage(),
-      HomePage(),
+      //HomePage(),
+      ExplorePage(),
       ProfilePage(),
     ];
     super.initState();
@@ -44,9 +46,13 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(Icons.people_outline),
             label: 'Friends',
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
             label: 'Home',
+          ),*/
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_location_alt_outlined),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
