@@ -17,7 +17,7 @@ class Python {
     data = await getData(url);
     var decoded = jsonDecode(data);
 
-    queryText = decoded['client'];
+    queryText = decoded['output'];
 
     print(queryText);
 
