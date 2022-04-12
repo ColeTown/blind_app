@@ -166,15 +166,12 @@ class MongoDatabase {
      if(await UserLocations.findOne(where.eq('userid', userId))==null){
         return await UserLocations.insertOne({
           'userid': userId,
-          'longitude': position.longitude,
-          'latitude': position.latitude
+          'location': [position.longitude, position.latitude]
         });
       }
      else {
         await UserLocations.updateOne(where.eq('userid', userId),
-            modify.set('longitude', position.longitude));
-        await UserLocations.updateOne(where.eq('userid', userId),
-            modify.set('latitude', position.latitude));
+            modify.set('location', [position.longitude, position.latitude]));
      }
     } catch (e) {
       print(e);
@@ -183,7 +180,8 @@ class MongoDatabase {
 
   getLocation(String userId) async {
     try{
-      return Position.fromMap(await UserLocations.findOne(where.eq('userid', userId)));
+      var location = await UserLocations.findOne(where.eq('userid', userId));
+      return Position(longitude: location['location'][0], latitude: location['location'][1]);
     } catch (e) {
       print(e);
     }
