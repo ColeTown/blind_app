@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
@@ -193,10 +194,18 @@ class MongoDatabase {
   // Returns an Image object converted from base64 of pfp for a given userId
   getPfp(String userId) async {
     try{
-      ImageProvider provider;
-      String binString = await Users.findOne(where.eq('userid', userId))['pfp'];
-      provider = MemoryImage(base64Decode(binString));
-      return provider;
+      Uint8List imgData;
+      var user = await Users.findOne(where.eq('userid', userId));
+      //String imgBin = user['pfp'];
+      if(user['pfp'] != null) {
+        imgData = base64Decode(user['pfp']);
+      }
+      else{
+        imgData = (await rootBundle.load("lib/images/OOjs_UI_icon_userAvatar.svg.png")).buffer.asUint8List();
+      }
+
+
+      return imgData;
     } catch (e) {
       print(e);
     }

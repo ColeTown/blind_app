@@ -27,13 +27,16 @@ class _ProfilePageState extends State<ProfilePage>{
       for (var tag in userTags) {
         tagList.add(tag['tag']);
       }
+
       ProfileUser thisUserProfile = ProfileUser(
           userId: localUserId,
           imageURL: "https://randomuser.me/api/portraits/lego/" +
               r.nextInt(10).toString() + ".jpg",
           name: user[0]['fname'] + " " + user[0]['lname'],
           bioText: user[0]['bio'],
-          tags: tagList
+          tags: tagList,
+
+          imageData: await db.getPfp(localUserId)
       );
       List<ProfileUser> profile = [];
       profile.add(thisUserProfile);
@@ -80,10 +83,9 @@ class _ProfilePageState extends State<ProfilePage>{
                             child: Stack(
                               children: [
                                 CircleAvatar(
-                                  backgroundImage: NetworkImage(snapshot.data[0]!.imageURL),
+                                  backgroundImage: MemoryImage(snapshot.data[0]!.imageData, scale: 1),// NetworkImage(snapshot.data[0]!.imageURL),
                                   maxRadius: 80,
                                 ),
-
                               ],
                             ),
                           ),
