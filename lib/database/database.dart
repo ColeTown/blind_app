@@ -1,5 +1,8 @@
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:geolocator/geolocator.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flutter/widgets.dart';
 
 class MongoDatabase {
   var Connections;
@@ -182,6 +185,26 @@ class MongoDatabase {
     try{
       var location = await UserLocations.findOne(where.eq('userid', userId));
       return Position(longitude: location['location'][0], latitude: location['location'][1]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // Returns an Image object converted from base64 of pfp for a given userId
+  getPfp(String userId) async {
+    try{
+      ImageProvider provider;
+      String binString = await Users.findOne(where.eq('userid', userId))['pfp'];
+      provider = MemoryImage(base64Decode(binString));
+      return provider;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  setPfp(String userId, MemoryImage image) async {
+    try{
+      return await Users.updateOne(where.eq('userid', userId), modify.set('pfp', base64Encode(image.bytes)));
     } catch (e) {
       print(e);
     }
