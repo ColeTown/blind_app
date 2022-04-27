@@ -9,14 +9,14 @@ var db = MongoDatabase();
 var geo = GeoLocation();
 var py = Python();
 
-String localUserId = 'then-dog-1993';
-//'middle-mole-4206', 'then-dog-1993'
+String localUserId = 'charming-cat-972';
+//'middle-mole-4206', 'then-dog-1993', 'american-hyena-8431', 'charming-cat-972'
 
 void main() {
   db.connect();
   runApp(MyApp());
   pushCurrentLocationToDB(localUserId);
-  //getResponse(localUserId);
+  getResponse(localUserId);
 }
 
 pushCurrentLocationToDB(String userId) async {
@@ -30,9 +30,9 @@ updateLocation(String userId, Position position) async {
 
 }
 
-getResponse(String userId) {
+getResponse(String userId) async {
 
-  py.getResponse(userId);
+  await py.getResponse(userId);
 
 }
 
