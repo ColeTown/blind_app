@@ -1,5 +1,5 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-
 import '../screens/chatDetailPage.dart';
 
 class ConversationList extends StatefulWidget {
@@ -9,6 +9,8 @@ class ConversationList extends StatefulWidget {
   String imageUrl;
   String time;
   final Function() refreshParent;
+
+  Uint8List imageData;
   ConversationList(
       {Key? key,
       required this.name,
@@ -16,7 +18,8 @@ class ConversationList extends StatefulWidget {
       required this.imageUrl,
       required this.time,
       required this.friendUserId,
-      required this.refreshParent})
+      required this.refreshParent,
+      required this.imageData})
       : super(key: key);
   @override
   _ConversationListState createState() => _ConversationListState();
@@ -46,7 +49,7 @@ class _ConversationListState extends State<ConversationList> {
               child: Row(
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundImage: NetworkImage(widget.imageUrl),
+                    backgroundImage: MemoryImage(widget.imageData),//NetworkImage(widget.imageUrl),
                     maxRadius: 30,
                   ),
                   const SizedBox(

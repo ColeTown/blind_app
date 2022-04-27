@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,9 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     List toUser = await db.getMessages(friendUserId, localUserId);
     var friendProfile = await db.getUsers(friendUserId);
     var friendName = friendProfile[0]['fname'] + " " + friendProfile[0]['lname'];
+
+    Uint8List friendImageData = await db.getPfp(friendUserId);
+
     for (var message in fromUser) {
       messages.add(ChatMessage(
           messageContent: message['text'],
@@ -37,6 +41,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     List snapshot = [];
     snapshot.add(friendName);
     snapshot.add(messages);
+    snapshot.add(friendImageData);
     return snapshot;
   }
 
@@ -77,8 +82,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                           width: 2,
                         ),
                         CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              "https://randomuser.me/api/portraits/lego/3.jpg"),
+                          backgroundImage: MemoryImage(snapshot.data![2]),//NetworkImage("https://randomuser.me/api/portraits/lego/3.jpg"),
                           maxRadius: 20,
                         ),
                         SizedBox(
