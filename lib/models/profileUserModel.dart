@@ -8,10 +8,9 @@ class ProfileUser{
   String userId;
   String name;
   String bioText;
-  String imageURL;
+  /*String imageURL;*/
   List<String> tags;
-
   Uint8List imageData;
 
-  ProfileUser({ required this.userId,  required this.name, required this.bioText, required this.imageURL, required this.tags, required this.imageData});
+  ProfileUser({ required this.userId,  required this.name, required this.bioText, /*required this.imageURL,*/ required this.tags, required this.imageData});
 }
