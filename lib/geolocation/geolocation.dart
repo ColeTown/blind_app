@@ -17,7 +17,6 @@ class GeoLocation {
         .then((Position position) {
 
           currentPosition =  position;
-          print(currentPosition);
           getAddressFromLatLng();
 
 
@@ -39,7 +38,6 @@ class GeoLocation {
     } catch (e) {
       print(e);
     }
-    print(currentAddress);
   }
 
 }

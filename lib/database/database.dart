@@ -1,5 +1,9 @@
+import 'package:flutter/services.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:geolocator/geolocator.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flutter/widgets.dart';
 
 class MongoDatabase {
   var Connections;
@@ -166,15 +170,12 @@ class MongoDatabase {
      if(await UserLocations.findOne(where.eq('userid', userId))==null){
         return await UserLocations.insertOne({
           'userid': userId,
-          'longitude': position.longitude,
-          'latitude': position.latitude
+          'location': [position.longitude, position.latitude]
         });
       }
      else {
         await UserLocations.updateOne(where.eq('userid', userId),
-            modify.set('longitude', position.longitude));
-        await UserLocations.updateOne(where.eq('userid', userId),
-            modify.set('latitude', position.latitude));
+            modify.set('location', [position.longitude, position.latitude]));
      }
     } catch (e) {
       print(e);
@@ -183,7 +184,36 @@ class MongoDatabase {
 
   getLocation(String userId) async {
     try{
-      return Position.fromMap(await UserLocations.findOne(where.eq('userid', userId)));
+      var location = await UserLocations.findOne(where.eq('userid', userId));
+      return Position(longitude: location['location'][0], latitude: location['location'][1]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // Returns an Image object converted from base64 of pfp for a given userId
+  getPfp(String userId) async {
+    try{
+      Uint8List imgData;
+      var user = await Users.findOne(where.eq('userid', userId));
+      //String imgBin = user['pfp'];
+      if(user['pfp'] != null) {
+        imgData = base64Decode(user['pfp']);
+      }
+      else{
+        imgData = (await rootBundle.load("lib/images/OOjs_UI_icon_userAvatar.svg.png")).buffer.asUint8List();
+      }
+
+
+      return imgData;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  setPfp(String userId, MemoryImage image) async {
+    try{
+      return await Users.updateOne(where.eq('userid', userId), modify.set('pfp', base64Encode(image.bytes)));
     } catch (e) {
       print(e);
     }

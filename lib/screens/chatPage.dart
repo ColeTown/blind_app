@@ -32,7 +32,11 @@ class _ChatPageState extends State<ChatPage> {
             name: tempFriend[0]['fname'] + " " + tempFriend[0]['lname'],
             messageText: tempMessage?['text'] ?? "Start a conversation!",
             imageURL: "https://randomuser.me/api/portraits/lego/" + r.nextInt(10).toString() +".jpg",
-            lastTime: tempMessage?['time_sent'] ?? DateTime.now()));
+            lastTime: tempMessage?['time_sent'] ?? DateTime.now(),
+            imageData: await db.getPfp(friend)
+        ));
+
+
       } catch (e) {
         print("Chat Page getMessages(): " + e.toString());
       }
@@ -115,6 +119,7 @@ class _ChatPageState extends State<ChatPage> {
                               .format(snapshot.data![index].lastTime),
                           friendUserId: snapshot.data![index].userId,
                           refreshParent: refresh,
+                          imageData: snapshot.data![index].imageData,
                         );
                       },
                     ),
