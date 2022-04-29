@@ -9,7 +9,22 @@ var db = MongoDatabase();
 var geo = GeoLocation();
 var py = Python();
 
-String localUserId = 'charming-cat-972';
+String localUserId = '';
+
+// *** TEST USER EMAILS ***
+// phastings@guerrillamail.com
+// sestrada@guerrillamail.com
+// hhook@guerrillamail.com
+// ckhan@guerrillamail.com
+// cmill@guerrillamail.com
+// avang@guerrillamail.com
+// pleigh@guerrillamail.com
+// acolon@guerrillamail.com
+//  lguy@guerrillamail.com
+//  jnoble@guerrillamail.com
+
+// >>> All passwords for test profiles = 'asdf1234'
+
 //'middle-mole-4206', 'then-dog-1993', 'american-hyena-8431', 'charming-cat-972'
 
 void main() {

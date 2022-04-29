@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/widgets.dart';
+import 'package:blind_app/main.dart';
 
 class MongoDatabase {
   var Connections;
@@ -218,5 +219,24 @@ class MongoDatabase {
       print(e);
     }
   }
+
+  // Check a user's credentials against database and return corresponding user
+  authUser(String email, String pw) async {
+    try{
+      var user = await Users.findOne(where.eq('email', email));
+      if(user != null && pw == user['pw']){
+        localUserId = user['userid'];
+        return true;
+      }
+      else{
+        return false;
+      }
+
+    }
+    catch (e) {
+      print(e);
+    }
+  }
+
 
 }
