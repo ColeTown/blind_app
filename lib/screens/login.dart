@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:blind_app/main.dart';
+import 'package:blind_app/database/database.dart';
 import 'navBar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,6 +10,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginDemoState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController pwController = TextEditingController();
+  String authErrorText = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,24 +36,31 @@ class _LoginDemoState extends State<LoginPage> {
               //       child: Image.asset('asset/images/flutter-logo.png')),
               // ),
             ),
-            const Padding(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                  authErrorText,
+                  style: const TextStyle(color: Colors.red))
+            ),
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                controller: emailController,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-
+                controller: pwController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
@@ -69,9 +81,17 @@ class _LoginDemoState extends State<LoginPage> {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => NavBar()));
+                onPressed: () async {
+                  // TODO AUTHENTICATION GOES HERE
+                  if(await db.authUser(emailController.text, pwController.text)){
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => NavBar()));
+                  }
+                  else{
+                    setState(() {
+                      authErrorText = 'Unrecognized email or password.';
+                    });
+                  }
                 },
                 child: const Text(
                   'Login',
