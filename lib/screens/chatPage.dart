@@ -24,15 +24,19 @@ class _ChatPageState extends State<ChatPage> {
     List usersFriendsId = await db.getConnections(localUserId);
     for (var friend in usersFriendsId) {
       try {
-        var tempFriend = await db.getUsers(friend['userid2']);
+        var tempFriend = await db.getUsers(friend);
         var tempMessage =
-            await db.getMostRecentMessage(localUserId, friend['userid2']);
+            await db.getMostRecentMessage(localUserId, friend);
         friends.add(ChatUsers(
             userId: tempFriend[0]['userid'],
             name: tempFriend[0]['fname'] + " " + tempFriend[0]['lname'],
             messageText: tempMessage?['text'] ?? "Start a conversation!",
             imageURL: "https://randomuser.me/api/portraits/lego/" + r.nextInt(10).toString() +".jpg",
-            lastTime: tempMessage?['time_sent'] ?? DateTime.now()));
+            lastTime: tempMessage?['time_sent'] ?? DateTime.now(),
+            imageData: await db.getPfp(friend)
+        ));
+
+
       } catch (e) {
         print("Chat Page getMessages(): " + e.toString());
       }
@@ -115,6 +119,7 @@ class _ChatPageState extends State<ChatPage> {
                               .format(snapshot.data![index].lastTime),
                           friendUserId: snapshot.data![index].userId,
                           refreshParent: refresh,
+                          imageData: snapshot.data![index].imageData,
                         );
                       },
                     ),

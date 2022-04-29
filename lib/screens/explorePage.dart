@@ -12,6 +12,21 @@ class ExplorePage extends StatelessWidget{
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+        SafeArea (
+          child: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const <Widget>[
+                Text(
+                  "Explore",
+                  style: TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ),
           Container(
             constraints: BoxConstraints.expand(
               height: 400,
