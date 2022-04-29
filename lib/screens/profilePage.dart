@@ -107,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage>{
                           Icons.edit,
                           color: Colors.white,
                         ),
-                        onPressed: () {  },
+                        onPressed: () {},
                       )
                     )
                   ),
