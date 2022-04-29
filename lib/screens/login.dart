@@ -82,7 +82,6 @@ class _LoginDemoState extends State<LoginPage> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: FlatButton(
                 onPressed: () async {
-                  // TODO AUTHENTICATION GOES HERE
                   if(await db.authUser(emailController.text, pwController.text)){
                     Navigator.push(
                         context, MaterialPageRoute(builder: (_) => NavBar()));
