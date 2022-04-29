@@ -1,7 +1,7 @@
-//Authors: Anderson 4/6/22
 
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/profileUserModel.dart';
 import '../main.dart';
@@ -74,16 +74,48 @@ class _ProfilePageState extends State<ProfilePage>{
     final double bottom = profileHeight / 2;
     final double top = coverHeight - profileHeight / 2;
     return Stack(
-      clipBehavior: Clip.none,
+      clipBehavior: Clip.hardEdge,
       alignment: Alignment.topCenter,
       children: [
         Container(
           margin: EdgeInsets.only(bottom: bottom),
           child:  buildCoverImage(snapshot),
         ),
-        Positioned(
-            top: top,
-            child: buildProfileImage(snapshot)),
+        Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.topCenter,
+          children: [
+            SizedBox(height: 350, width: profileHeight),
+            Positioned(
+              top: 200,
+              child:
+                buildProfileImage(snapshot),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: ClipOval(
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  color: Colors.white,
+                  child: ClipOval(
+                    child: Container(
+                      color: Colors.blue,
+                      child: IconButton(
+                        iconSize: 25,
+                        icon: Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {  },
+                      )
+                    )
+                  ),
+                ),
+              ),
+            )
+          ]
+        ),
       ],
     );
   }
@@ -104,19 +136,19 @@ class _ProfilePageState extends State<ProfilePage>{
     child: CircleAvatar(
       backgroundImage: MemoryImage(snapshot.data[0]!.imageData, scale: 1),
       /*NetworkImage("https://placeimg.com/640/480/any",),*/
-      radius: 60,
+      radius: 65,
     ),
   );
 
   Widget buildContent(AsyncSnapshot snapshot) => Column(
     children: [
       const SizedBox(height: 8),
-      Text(
+      Text( //Get the Users Name
         snapshot.data[0]!.name,
         style: TextStyle(fontSize: 28, fontWeight: FontWeight.normal)
       ),
       const SizedBox(height: 8),
-      const Text(
+      const Text(  //Get the Users Occupation
         'Software Engineer',
         style: TextStyle(fontSize: 20, color: Colors.black),
       ),
@@ -137,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage>{
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 16),
-        Text(
+        Text( //Get the Users About
           snapshot.data[0]!.bioText,
             style: TextStyle(fontSize: 16, height: 1),
         ),
@@ -147,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage>{
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 20),
-        Text(
+        Text( //Get the Users Tags
           snapshot.data[0]!.tags.toString(),
           style: TextStyle(fontSize: 16, height: 1),
         )
