@@ -24,8 +24,6 @@ void unitTests() async {
 
     var expected = '[true, american-hyena-8431]';
 
-    print(results.toString());
-
     expect(results.toString(), expected);
   });
 
