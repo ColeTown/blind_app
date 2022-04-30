@@ -1,14 +1,14 @@
 //import 'package:test/expect.dart';
 //import 'package:test/scaffolding.dart';
 import '../main.dart';
-<<<<<<< HEAD
+
 import '../python/api.dart';
 import 'dart:convert';
 
 
-=======
+
 import 'package:flutter_test/flutter_test.dart';
->>>>>>> 391af3c87773addba3d8ff9de603b2e299427a2e
+
 
 void unitTests() async {
   test('TCCT01: Testing pulling user data from database', () async {
@@ -24,7 +24,7 @@ void unitTests() async {
       expect(results.toString(), expected);
   });
 
-<<<<<<< HEAD
+
   test('TCCP01: Testing matching algorithm', () async {
 
     String url = "";
@@ -45,9 +45,6 @@ void unitTests() async {
 
   });
 
-
-}
-=======
   test('TCJM01: Testing user authentication function', () async {
     List results = [];
     results.add(await db.authUser('hhook@guerrillamail.com', 'asdf1234'));
@@ -58,5 +55,10 @@ void unitTests() async {
     expect(results.toString(), expected);
   });
 
->>>>>>> 391af3c87773addba3d8ff9de603b2e299427a2e
+
+
+
+
+}
+
 
