@@ -12,7 +12,8 @@ class Python {
   getResponse(value) async {
 
     url = 'http://10.0.2.2:5000/api?query=' + value.toString();
-    data = await getData(url);
+    data =  await getData(url);
+    print(data);
     var decoded = jsonDecode(data);
 
     print(decoded['output']);
