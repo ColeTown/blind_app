@@ -7,6 +7,7 @@ import '../models/profileUserModel.dart';
 import '../main.dart';
 import 'package:intl/intl.dart';
 import 'navBar.dart';
+import 'editProfilePage.dart';
 
 class ProfilePage extends StatefulWidget{
   @override
@@ -107,7 +108,12 @@ class _ProfilePageState extends State<ProfilePage>{
                           Icons.edit,
                           color: Colors.white,
                         ),
-                        onPressed: () {  },
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => editProfilePage()),
+                          );
+                        },
                       )
                     )
                   ),

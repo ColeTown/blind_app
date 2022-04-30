@@ -4,11 +4,11 @@ import 'package:geolocator/geolocator.dart';
 import 'Unit Tests/tests.dart';
 import 'geolocation/geolocation.dart';
 import 'database/database.dart';
-import 'python/pythonapi.dart';
+//import 'python/pythonapi.dart';
 
 var db = MongoDatabase();
 var geo = GeoLocation();
-var py = Python();
+//var py = Python();
 
 String localUserId = '';
 
@@ -32,7 +32,7 @@ Future<void> main() async {
   await db.connect();
   runApp(MyApp());
   pushCurrentLocationToDB(localUserId);
-  getResponse(localUserId);
+  //getResponse(localUserId);
   unitTests();
 }
 
@@ -47,11 +47,11 @@ updateLocation(String userId, Position position) async {
 
 }
 
-getResponse(String userId) async {
-
-  await py.getResponse(userId);
-
-}
+//getResponse(String userId) async {
+//
+//  await py.getResponse(userId);
+//
+//}
 
 class MyApp extends StatelessWidget {
   @override

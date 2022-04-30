@@ -220,6 +220,14 @@ class MongoDatabase {
     }
   }
 
+  setBio(String userId, String newBio) async{
+    try{
+      return await Users.updateOne(where.eq('userid', userId), modify.set('bio', newBio));
+    } catch (e){
+      print(e);
+    }
+  }
+
   // Check a user's credentials against database and return corresponding user
   authUser(String email, String pw) async {
     try{
