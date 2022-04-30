@@ -107,10 +107,12 @@ class MatchingGenerator():
             else:
                 self.otherUsrTags.append(result['tag'])
 
-        if usrId == self.userId:
+        if usrId == '':
+            pass
+        elif usrId == self.userId:
             self.main.update({usrId: self.mainUsrTags})
         else:
-            self.other.update({usrId: self.mainUsrTags})
+            self.other.update({usrId: self.otherUsrTags})
 
     def matchMaker(self):
 
@@ -131,7 +133,6 @@ class MatchingGenerator():
         for value in self.other.values():
 
             if len(value) > columnCount:
-                print(len(value))
                 columnCount = len(value)
 
         otherUsers = pd.DataFrame(
@@ -184,7 +185,7 @@ class MatchingGenerator():
 # for doc in b:
 #    a.getUsrTags(doc['userid'])
 
-# print(a.matchMaker())
+# a.matchMaker()
 
 
 # c = DatingAlgoritm(a.mainUsrTags, a.otherUsrTags)
@@ -197,7 +198,8 @@ def getOrd():
     b = a.query(100)
     for doc in b:
         a.getUsrTags(doc['userid'])
-    dic['output'] = a.matchMaker()
+        dic['output'] = a.matchMaker()
+
     return dic
 
 
