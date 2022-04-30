@@ -1,6 +1,7 @@
-import 'package:test/expect.dart';
-import 'package:test/scaffolding.dart';
+//import 'package:test/expect.dart';
+//import 'package:test/scaffolding.dart';
 import '../main.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void unitTests() async {
   test('TCCT01: Testing pulling user data from database', () async {
@@ -14,6 +15,18 @@ void unitTests() async {
           'pfp: }]';
 
       expect(results.toString(), expected);
+  });
+
+  test('TCJM01: Testing user authentication function', () async {
+    List results = [];
+    results.add(await db.authUser('hhook@guerrillamail.com', 'asdf1234'));
+    results.add(localUserId);
+
+    var expected = '[true, american-hyena-8431]';
+
+    print(results.toString());
+
+    expect(results.toString(), expected);
   });
 
 
