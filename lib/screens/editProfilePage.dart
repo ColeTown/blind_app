@@ -191,7 +191,9 @@ class _editProfilePageState extends State<editProfilePage>{
           onChanged: (later) {},
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           child: const Text(
             'Save',
             style: TextStyle(color: Colors.blue, fontSize: 15),
