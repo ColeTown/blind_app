@@ -1,6 +1,10 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 import '../main.dart';
+import '../python/api.dart';
+import 'dart:convert';
+
+
 
 void unitTests() async {
   test('TCCT01: Testing pulling user data from database', () async {
@@ -16,5 +20,26 @@ void unitTests() async {
       expect(results.toString(), expected);
   });
 
+  test('TCCP01: Testing matching algorithm', () async {
+
+    String url = "";
+
+    var data = "";
+
+    String usrName = 'then-dog-1993';
+
+    url = 'http://10.0.2.2:5000/api?query=' + usrName;
+    data =  await getData(url);
+    
+    var decoded = jsonDecode(data);
+
+    var expected = '[charming-cat-972, middle-mole-4206]';
+
+
+    expect(decoded['output'].toString(), expected);
+
+  });
+
 
 }
+

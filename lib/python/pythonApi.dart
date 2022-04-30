@@ -13,10 +13,8 @@ class Python {
 
     url = 'http://10.0.2.2:5000/api?query=' + value.toString();
     data =  await getData(url);
-    print(data);
-    var decoded = jsonDecode(data);
 
-    print(decoded['output']);
+    var decoded = jsonDecode(data);
 
     return decoded['output'];
 
