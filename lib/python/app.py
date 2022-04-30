@@ -107,10 +107,10 @@ class MatchingGenerator():
             else:
                 self.otherUsrTags.append(result['tag'])
 
-        if result['userid'] == self.userId:
+        if usrId == self.userId:
             self.main.update({usrId: self.mainUsrTags})
         else:
-            self.other.update({usrId: self.otherUsrTags})
+            self.other.update({usrId: self.mainUsrTags})
 
     def matchMaker(self):
 
@@ -166,26 +166,25 @@ class MatchingGenerator():
 
         return list(data.index)
 
-       # merge = pd.merge(userScores, otherUserScores, on=['userId'])
+    # merge = pd.merge(userScores, otherUserScores, on=['userId'])
 
     def printq(self) -> None:
         for doc in self.query:
             pprint(doc)
 
 
-# a = MatchingGenerator('then-dog-1993')
+#a = MatchingGenerator('then-dog-1993')
 
-# a.getUsrTags()
 
-# b = a.query(100)
+#b = a.query(100)
 
 # a.printq()
 
 
 # for doc in b:
 #    a.getUsrTags(doc['userid'])
-#
-# a.matchMaker()
+
+# print(a.matchMaker())
 
 
 # c = DatingAlgoritm(a.mainUsrTags, a.otherUsrTags)
