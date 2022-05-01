@@ -12,6 +12,8 @@ This project was developed in the Android Studio Environment and thus will need 
 run the application on an emulated device. If Android Studio is not installed, search for it, download,
 and install the latest version and open this project in it.
 
+You will also have to download and install Flutter at https://docs.flutter.dev/get-started/install
+
 You will have to create an emulated device with Android Studios 'Device Manager'. The Device Manager
 wizard should help you with creating the emulator.
 
