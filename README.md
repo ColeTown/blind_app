@@ -4,11 +4,7 @@ Senior Capstone Project
 
 Team Members:
 -------------
-Jett Graham
-Cantrell Picou Jr.
-James Marks
-Anderson McKennon
-Cole Townsend
+Jett Graham, Cantrell Picou Jr., James Marks, Anderson McKennon, Cole Townsend
 
 ## Getting Started
 
