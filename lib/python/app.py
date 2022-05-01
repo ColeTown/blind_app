@@ -107,7 +107,9 @@ class MatchingGenerator():
             else:
                 self.otherUsrTags.append(result['tag'])
 
-        if result['userid'] == self.userId:
+        if usrId == '':
+            pass
+        elif usrId == self.userId:
             self.main.update({usrId: self.mainUsrTags})
         else:
             self.other.update({usrId: self.otherUsrTags})
@@ -131,7 +133,6 @@ class MatchingGenerator():
         for value in self.other.values():
 
             if len(value) > columnCount:
-                print(len(value))
                 columnCount = len(value)
 
         otherUsers = pd.DataFrame(
@@ -166,25 +167,24 @@ class MatchingGenerator():
 
         return list(data.index)
 
-       # merge = pd.merge(userScores, otherUserScores, on=['userId'])
+    # merge = pd.merge(userScores, otherUserScores, on=['userId'])
 
     def printq(self) -> None:
         for doc in self.query:
             pprint(doc)
 
 
-# a = MatchingGenerator('then-dog-1993')
+#a = MatchingGenerator('then-dog-1993')
 
-# a.getUsrTags()
 
-# b = a.query(100)
+#b = a.query(100)
 
 # a.printq()
 
 
 # for doc in b:
 #    a.getUsrTags(doc['userid'])
-#
+
 # a.matchMaker()
 
 
@@ -198,7 +198,8 @@ def getOrd():
     b = a.query(100)
     for doc in b:
         a.getUsrTags(doc['userid'])
-    dic['output'] = a.matchMaker()
+        dic['output'] = a.matchMaker()
+
     return dic
 
 

@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:blind_app/main.dart';
 import 'package:blind_app/database/database.dart';
 import 'navBar.dart';
+import '../python/pythonapi.dart';
+
+var py = Python();
+
+getResponse(String userId) async{
+
+   await py.getResponse(userId);
+
+}
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,6 +22,8 @@ class _LoginDemoState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController pwController = TextEditingController();
   String authErrorText = '';
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +96,7 @@ class _LoginDemoState extends State<LoginPage> {
                   if(await db.authUser(emailController.text, pwController.text)){
                     Navigator.push(
                         context, MaterialPageRoute(builder: (_) => NavBar()));
+                    await getResponse(localUserId);
                   }
                   else{
                     setState(() {
