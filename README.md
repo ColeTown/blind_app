@@ -2,6 +2,10 @@
 
 Senior Capstone Project
 
+Team Members:
+-------------
+Jett Graham, Cantrell Picou Jr., James Marks, Anderson McKennon, Cole Townsend
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
