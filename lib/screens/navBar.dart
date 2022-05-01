@@ -25,7 +25,7 @@ class _NavBarState extends State<NavBar> {
       //HomePage(),
       ExplorePage(),
       ProfilePage(),
-      editProfilePage(),
+      //editProfilePage(),
     ];
     super.initState();
   }
@@ -60,10 +60,10 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(Icons.account_circle_outlined),
             label: 'Profile',
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(Icons.edit),
             label: 'edit Profile',
-          )
+          )*/
         ],
       ),
     );

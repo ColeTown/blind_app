@@ -2,15 +2,19 @@
 
 Senior Capstone Project
 
+Team Members:
+-------------
+Jett Graham, Cantrell Picou Jr., James Marks, Anderson McKennon, Cole Townsend
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project was developed in the Android Studio Environment and thus will need Android Studio in order to
+run the application on an emulated device. If Android Studio is not installed, search for it, download,
+and install the latest version and open this project in it.
 
-A few resources to get you started if this is your first Flutter project:
+You will have to create an emulated device with Android Studios 'Device Manager'. The Device Manager
+wizard should help you with creating the emulator.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+You will also have to change your run configuration before the application can be launched in this
+environment. Go to Run>Edit Configurations>Additional run args and type "--no-sound-null-safety" in
+the text box and save the changes. Now, you should be able to run the project through the emulator.

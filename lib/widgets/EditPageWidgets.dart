@@ -11,7 +11,7 @@ class editingTextField extends StatefulWidget{
   final int maxLines;
   final String existingText;
   final ValueChanged<String> onChanged;
-  TextEditingController controller = TextEditingController();
+  TextEditingController controller;
 
   editingTextField({
     Key? key,
