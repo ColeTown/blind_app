@@ -50,6 +50,7 @@ void unitTests() async {
 
   test('TCAM01: Testing changes to user Bio within Database', () async{
     String testString = 'This is a bio from a TEST';
+
     await db.setBio('then-dog-1993', testString);
 
     var results = await db.getUsers('then-dog-1993');
