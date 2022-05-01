@@ -5,8 +5,6 @@ import '../main.dart';
 import '../python/api.dart';
 import 'dart:convert';
 
-
-
 import 'package:flutter_test/flutter_test.dart';
 
 
@@ -64,6 +62,16 @@ void unitTests() async {
         'joindate: 2022-04-02 05:00:00.000Z, bio: $testString, '
         'pfp: }]';
 
+    expect(results.toString(), expected);
+
+  });
+
+  test('TCJG01: Testing pulling message data from Database', () async{
+    List results = [];
+    var usersFriendsId = await db.getConnections('charming-cat-972');
+    results.add(await db.getMostRecentMessage(localUserId, usersFriendsId));
+
+    var expected = '[hello]';
     expect(results.toString(), expected);
 
   });
