@@ -48,6 +48,9 @@ void unitTests() async {
     expect(results.toString(), expected);
   });
 
+  
+
+
   test('TCAM01: Testing changes to user Bio within Database', () async{
     String testString = 'This is a bio from a TEST';
 
@@ -64,10 +67,7 @@ void unitTests() async {
     expect(results.toString(), expected);
 
   });
-
-
-
-
+  
 
 }
 

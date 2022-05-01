@@ -20,3 +20,7 @@ wizard should help you with creating the emulator.
 You will also have to change your run configuration before the application can be launched in this
 environment. Go to Run>Edit Configurations>Additional run args and type "--no-sound-null-safety" in
 the text box and save the changes. Now, you should be able to run the project through the emulator.
+
+You will have to have install evey module used in app.py by using the pip install command used for python.
+To run the app.py app using flask, run the command "FLASK_APP=app.py flask run" in the terminal in the folder where
+the app.py file is located. This should allow use of the program in the flutter app.
